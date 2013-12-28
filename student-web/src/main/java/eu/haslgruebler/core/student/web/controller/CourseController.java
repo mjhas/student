@@ -8,10 +8,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import eu.haslgruebler.core.api.Course;
 import eu.haslgruebler.core.api.facade.CourseFacade;
+import eu.haslgruebler.core.ui.api.CorePageController;
+import eu.haslgruebler.core.ui.api.JavascriptAsset;
 
 /**
  * 
@@ -20,14 +21,14 @@ import eu.haslgruebler.core.api.facade.CourseFacade;
  */
 @Controller
 @RequestMapping("/course")
-public class CourseController {
+public class CourseController extends CorePageController {
     private CourseFacade courseFacade;
 
     /**
      * 
      */
     private CourseController() {
-        super();
+        super("/course/course.jsp", new JavascriptAsset("course", "/student/course.js"), null);
     }
 
     /**
@@ -40,19 +41,6 @@ public class CourseController {
     }
 
     /**
-     * register the course root page
-     * 
-     * @return {@link ModelAndView}
-     */
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView get() {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("forward:/");
-        mav.addObject("page", "/course/course.jsp");
-        return mav;
-    }
-
-    /**
      * register create template page
      * 
      * @return the viewName
@@ -61,7 +49,7 @@ public class CourseController {
     public String create() {
         return "course/template/create";
     }
-
+    
     /**
      * register list template page
      * 

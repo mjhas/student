@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import eu.haslgruebler.core.api.Student;
 import eu.haslgruebler.core.api.facade.StudentFacade;
+import eu.haslgruebler.core.ui.api.CSSAsset;
+import eu.haslgruebler.core.ui.api.CorePageController;
+import eu.haslgruebler.core.ui.api.JavascriptAsset;
 
 /**
  * 
@@ -20,14 +22,14 @@ import eu.haslgruebler.core.api.facade.StudentFacade;
  */
 @Controller
 @RequestMapping("/student")
-public class StudentController {
+public class StudentController extends CorePageController {
     private StudentFacade studentFacade;
 
     /**
      * 
      */
     private StudentController() {
-        super();
+        super("/student/student.jsp", new JavascriptAsset("student", "/student/student.js"), new CSSAsset("student", "/student/student.css"));
     }
 
     /**
@@ -37,19 +39,6 @@ public class StudentController {
     public StudentController(StudentFacade studentFacade) {
         this();
         this.studentFacade = studentFacade;
-    }
-
-    /**
-     * register the student root page
-     * 
-     * @return {@link ModelAndView}
-     */
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView get() {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("forward:/");
-        mav.addObject("page", "/student/student.jsp");
-        return mav;
     }
 
     /**
@@ -70,6 +59,16 @@ public class StudentController {
     @RequestMapping(value = "/api/list.html", method = RequestMethod.GET)
     public String list() {
         return "student/template/list";
+    }
+    
+    /**
+     * register dialog template page
+     * 
+     * @return the viewName
+     */
+    @RequestMapping(value = "/api/dialog.html", method = RequestMethod.GET)
+    public String dialog() {
+        return "student/template/dialog";
     }
 
     /**

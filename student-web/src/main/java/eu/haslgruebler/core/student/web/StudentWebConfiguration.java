@@ -49,8 +49,7 @@ public class StudentWebConfiguration extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/template/**").addResourceLocations("classpath:/template/");
-        registry.addResourceHandler("/javascript/**").addResourceLocations("classpath:/javascript/");
+        registry.addResourceHandler("/student/**").addResourceLocations("classpath:/student/");
     }
 
     /**

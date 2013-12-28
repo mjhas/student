@@ -34,7 +34,6 @@
 		<dependency>
 			<groupId>eu.haslgruebler.core</groupId>
 			<artifactId>bootstrap</artifactId>
-			<version>0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -43,12 +42,10 @@
 		<dependency>
 			<groupId>eu.haslgruebler.core</groupId>
 			<artifactId>ui-api</artifactId>
-			<version>0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 		    <groupId>eu.haslgruebler.core</groupId>
 		    <artifactId>ui-impl</artifactId>
-		    <version>0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>

@@ -1,0 +1,8 @@
+.studentGrid {
+    border: 1px solid rgb(212,212,212);
+    height: 400px;
+    width: auto;
+}
+.studentGridActions button{
+	margin:5px;
+}

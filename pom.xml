@@ -1,33 +1,32 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>eu.haslgruebler</groupId>
         <artifactId>core-parent</artifactId>
-        <version>0.1-SNAPSHOT</version>
+        <version>0.2-SNAPSHOT</version>
     </parent>
-	<groupId>eu.haslgruebler.student</groupId>
-	<artifactId>student-parent</artifactId>
-	<packaging>pom</packaging>
-	<version>0.1-SNAPSHOT</version>
-	<name>Student Webapp</name>
-	<modules>
-		<module>student-api</module>
-		<module>student-web</module>
-		<module>student-dao-mongo</module>
-		<module>student-webapp</module>
-	</modules>
-	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.mortbay.jetty</groupId>
-					<artifactId>maven-jetty-plugin</artifactId>
-					<version>6.1.10</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
+    <groupId>eu.haslgruebler.student</groupId>
+    <artifactId>student-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>Student Webapp</name>
+    <modules>
+        <module>student-api</module>
+        <module>student-web</module>
+        <module>student-dao-mongo</module>
+        <module>student-webapp</module>
+    </modules>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>maven-jetty-plugin</artifactId>
+                    <version>6.1.10</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
     <url>https://haslgruebler.eu/student</url>
     <description>Student Webapp</description>
     <developers>
@@ -37,4 +36,26 @@
             <url>https://haslgruebler.eu</url>
         </developer>
     </developers>
+    <properties>
+        <core.web.framework.version>0.2-SNAPSHOT</core.web.framework.version>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>eu.haslgruebler.core</groupId>
+                <artifactId>ui-api</artifactId>
+                <version>${core.web.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>eu.haslgruebler.core</groupId>
+                <artifactId>bootstrap</artifactId>
+                <version>${core.web.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>eu.haslgruebler.core</groupId>
+                <artifactId>ui-impl</artifactId>
+                <version>${core.web.framework.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
