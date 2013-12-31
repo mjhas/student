@@ -45,19 +45,21 @@ public class CourseMapper {
     public Collection<Course> map(Collection<CourseDAO> sourceList) {
         List<Course> targetList = new ArrayList<Course>(sourceList.size());
         for (CourseDAO source : sourceList) {
-            targetList.add(map(source));
+            if (source != null) {
+                targetList.add(map(source));
+            }
         }
         return targetList;
     }
 
     /**
-     * map from sourceList to targetList
+     * map from sourceList
      * 
      * @param sourceList .
-     * @param targetList .
      * @return {@link Collection} of {@link CourseDAO}
      */
-    public Collection<CourseDAO> map(Collection<Course> sourceList, Collection<CourseDAO> targetList) {
+    public Collection<CourseDAO> mapToDTO(Collection<Course> sourceList) {
+        Collection<CourseDAO> targetList = new ArrayList<CourseDAO>();
         for (Course source : sourceList) {
             targetList.add(map(source, new CourseDAO()));
         }

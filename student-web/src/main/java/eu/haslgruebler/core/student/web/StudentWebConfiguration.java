@@ -36,7 +36,7 @@ public class StudentWebConfiguration extends WebMvcConfigurerAdapter {
      */
     @Bean
     public StudentController studentController() {
-        return new StudentController(studentFacade);
+        return new StudentController(studentFacade, courseFacade);
     }
 
     /**
@@ -74,7 +74,7 @@ public class StudentWebConfiguration extends WebMvcConfigurerAdapter {
     }
 
     /**
-     * register a MessageSource for internationalisation 
+     * register a MessageSource for internationalisation
      * 
      * @return {@link MessageSource} for i18n
      */

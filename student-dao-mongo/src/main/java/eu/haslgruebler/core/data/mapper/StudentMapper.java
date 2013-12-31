@@ -34,7 +34,7 @@ public class StudentMapper {
     public StudentDAO map(Student source, StudentDAO target) {
         target.setName(source.getName());
         target.setId(source.getId());
-        target.setEnrolledCourses(courseMapper.map(source.getEnrolledCoures(), target.getEnrolledCoures()));
+        target.setEnrolledCourses(courseMapper.mapToDTO(source.getEnrolledCourses()));
         return target;
     }
 
@@ -45,7 +45,9 @@ public class StudentMapper {
      * @return {@link Student}
      */
     public Student map(StudentDAO source) {
-        return new Student(source.getId(), source.getName());
+        Student target = new Student(source.getId(), source.getName());
+        target.setEnrolledCourses(courseMapper.map(source.getEnrolledCoures()));
+        return target;
     }
 
     /**

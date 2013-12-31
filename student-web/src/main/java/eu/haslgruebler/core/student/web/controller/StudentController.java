@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import eu.haslgruebler.core.api.Course;
 import eu.haslgruebler.core.api.Student;
+import eu.haslgruebler.core.api.facade.CourseFacade;
 import eu.haslgruebler.core.api.facade.StudentFacade;
 import eu.haslgruebler.core.ui.api.CSSAsset;
 import eu.haslgruebler.core.ui.api.CorePageController;
@@ -24,6 +26,7 @@ import eu.haslgruebler.core.ui.api.JavascriptAsset;
 @RequestMapping("/student")
 public class StudentController extends CorePageController {
     private StudentFacade studentFacade;
+    private CourseFacade courseFacade;
 
     /**
      * 
@@ -35,9 +38,11 @@ public class StudentController extends CorePageController {
     /**
      * 
      * @param studentFacade .
+     * @param courseFacade .
      */
-    public StudentController(StudentFacade studentFacade) {
+    public StudentController(StudentFacade studentFacade, CourseFacade courseFacade) {
         this();
+        this.courseFacade = courseFacade;
         this.studentFacade = studentFacade;
     }
 
@@ -60,7 +65,7 @@ public class StudentController extends CorePageController {
     public String list() {
         return "student/template/list";
     }
-    
+
     /**
      * register dialog template page
      * 
@@ -80,6 +85,17 @@ public class StudentController extends CorePageController {
     @ResponseBody
     public Collection<Student> getStudents() {
         return studentFacade.findAllStudents();
+    }
+
+    /**
+     * returns all courses
+     * 
+     * @return {@link Collection} of {@link Course}
+     */
+    @RequestMapping(value = "/api/courses", method = RequestMethod.GET)
+    @ResponseBody
+    public Collection<Course> getCourses() {
+        return courseFacade.findAllCourses();
     }
 
     /**

@@ -12,14 +12,14 @@ import java.util.Collections;
 public class Student {
     private Long id;
     private String name;
-    private Collection<Course> enrolledCoures;
+    private Collection<Course> enrolledCourses;
 
     /**
      * Default Constructor
      */
     public Student() {
         super();
-        enrolledCoures = new ArrayList<Course>();
+        enrolledCourses = new ArrayList<Course>();
     }
 
     /**
@@ -49,20 +49,20 @@ public class Student {
         this.name = name;
     }
 
-    public Collection<Course> getEnrolledCoures() {
-        return Collections.unmodifiableCollection(enrolledCoures);
+    public Collection<Course> getEnrolledCourses() {
+        return Collections.unmodifiableCollection(enrolledCourses);
     }
 
     /**
      * 
      * @param enrolledCoures .
      */
-    public void setEnrolledCoures(Collection<Course> enrolledCoures) {
-        this.enrolledCoures.clear();
+    public void setEnrolledCourses(Collection<Course> enrolledCoures) {
+        this.enrolledCourses.clear();
         if (enrolledCoures != null) {
-            this.enrolledCoures.addAll(enrolledCoures);
+            this.enrolledCourses.addAll(enrolledCoures);
         } else {
-            this.enrolledCoures.clear();
+            this.enrolledCourses.clear();
         }
     }
 
@@ -71,6 +71,6 @@ public class Student {
      * @param course .
      */
     public void addEnrolledCourses(Course course) {
-        this.enrolledCoures.add(course);
+        this.enrolledCourses.add(course);
     }
 }
