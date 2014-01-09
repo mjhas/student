@@ -1,23 +1,31 @@
 (function(angular, $j, undefined) {
 
 	var studentApp = angular.module('studentApp', [ 'ngGrid',
-			'ui.bootstrap.modal' ]);
+			'ui.bootstrap.modal', 'ngRoute' ]);
+
+	studentApp.config(function($routeProvider) {
+		$routeProvider
+
+		// route for the home page
+		.when('/', {
+			redirectTo : '/list'
+		})
+		// route for the about page
+		.when('/list', {
+			templateUrl : 'api/list.html',
+			controller : 'gridController'
+		}).when('/create', {
+			templateUrl : 'api/create.html',
+			controller : 'studentController'
+		}).otherwise({
+			redirectTo : '/list'
+		});
+	});
+
 	studentApp.controller('studentController', function($scope,
 			studentRepository) {
-		$scope.update = function() {
-			studentRepository.fetchAll().success(function(students) {
-				$scope.students = students;
-				angular.forEach($scope.students, function(student) {
-					student.courses = function(){
-						return student.enrolledCourses.length;
-					};
-				});
-			});
-		};
-		$scope.update();
 		$scope.add = function(student) {
 			studentRepository.save(student).success(function(data) {
-				$scope.update();
 				$scope.reset();
 			});
 		};
@@ -26,7 +34,6 @@
 		};
 		$scope.remove = function(id) {
 			studentRepository.remove(id).success(function(data) {
-				$scope.update();
 			});
 		};
 
@@ -50,24 +57,18 @@
 			},
 		};
 	});
-	
-
-	studentApp.directive("students", function() {
-		return {
-			restrict : "E",
-			templateUrl : "api/list.html",
-		};
-	});
-
-	studentApp.directive("createstudent", function() {
-		return {
-			restrict : "E",
-			templateUrl : "api/create.html",
-		};
-	});
 	studentApp.controller('gridController', function($scope, $modal,
 			studentRepository) {
 		$scope.mySelections = [];
+		$scope.students = {};
+		studentRepository.fetchAll().success(function(students) {
+			angular.forEach(students, function(student) {
+				student.courses = function() {
+					return student.enrolledCourses.length;
+				};
+			});
+			$scope.students = students;
+		});
 		$scope.gridOptions = {
 			data : 'students',
 			columnDefs : [ {
@@ -79,6 +80,16 @@
 			}, ],
 			selectedItems : $scope.mySelections,
 			multiSelect : false
+		};
+		$scope.remove = function(id) {
+			studentRepository.remove(id).success(function(data) {
+				var i = $scope.students.length;
+				while (i--) {
+					if ($scope.students[i].id === id) {
+						$scope.students.splice(i, 1);
+					}
+				}
+			});
 		};
 		$scope.edit = function() {
 			var modalInstance = $modal.open({
@@ -95,13 +106,13 @@
 	studentApp.controller('dialogController', function($scope, $modalInstance,
 			student, studentRepository) {
 		$scope.student = student;
-		$scope.selectedCourses=[];
+		$scope.selectedCourses = [];
 		studentRepository.fetchCourses().success(function(courses) {
 			$scope.courses = courses;
-			//$scope.selectedCourses.push($scope.courses[0]);
-			student.enrolledCourses.forEach(function(enrolled){
-				$scope.courses.forEach(function(orig_course){
-					if (enrolled.id===orig_course.id){
+			// $scope.selectedCourses.push($scope.courses[0]);
+			student.enrolledCourses.forEach(function(enrolled) {
+				$scope.courses.forEach(function(orig_course) {
+					if (enrolled.id === orig_course.id) {
 						$scope.selectedCourses.push(orig_course);
 					}
 				});
@@ -109,7 +120,7 @@
 		});
 		$scope.oldName = '' + student.name;
 		$scope.ok = function(selectedCourses) {
-			$scope.student.enrolledCourses=selectedCourses;
+			$scope.student.enrolledCourses = selectedCourses;
 			studentRepository.save($scope.student);
 			$modalInstance.close($scope.student);
 		};

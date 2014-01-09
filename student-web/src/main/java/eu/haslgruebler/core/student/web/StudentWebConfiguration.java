@@ -59,7 +59,8 @@ public class StudentWebConfiguration extends WebMvcConfigurerAdapter {
     @Bean
     MenuItem studentMenu() {
         MenuItem student = new MenuItem("menu.student", "student/");
-        student.addSubMenuItem(new MenuItem("menu.student", "student/#"));
+        student.addSubMenuItem(new MenuItem("menu.student.list", "student/#/list"));
+        student.addSubMenuItem(new MenuItem("menu.student.create", "student/#/create"));
         return student;
     }
 

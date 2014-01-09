@@ -32,7 +32,12 @@ public class StudentController extends CorePageController {
      * 
      */
     private StudentController() {
-        super("/student/student.jsp", new JavascriptAsset("student", "/student/student.js"), new CSSAsset("student", "/student/student.css"));
+        super("/student/student.jsp");
+        addCssAsset(new CSSAsset("student", "/student/student.css"));
+        JavascriptAsset jsAsset = new JavascriptAsset("student", "/student/student.js", "angular-route");
+        jsAsset.setAngularModuleName("studentApp");
+        addJavascriptAsset(jsAsset);
+        setPageTitle("student.title.singlePageApp");
     }
 
     /**

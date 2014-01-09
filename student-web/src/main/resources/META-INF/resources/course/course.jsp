@@ -8,7 +8,3 @@
 	<courses class="row"></courses>
 
 </div>
-
-<script type="text/javascript">
-angular.bootstrap($('#courseApp'), [ 'courseApp' ]);
-</script>

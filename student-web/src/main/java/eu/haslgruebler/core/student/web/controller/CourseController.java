@@ -29,7 +29,11 @@ public class CourseController extends CorePageController {
      * 
      */
     private CourseController() {
-        super("/course/course.jsp", new JavascriptAsset("course", "/student/course.js"), new CSSAsset("student", "/student/course.css"));
+        super("/course/course.jsp");
+        addCssAsset(new CSSAsset("student", "/student/course.css"));
+        JavascriptAsset jsAsset = new JavascriptAsset("course", "/student/course.js");
+        jsAsset.setAngularModuleName("courseApp");
+        addJavascriptAsset(jsAsset);
     }
 
     /**
@@ -50,7 +54,7 @@ public class CourseController extends CorePageController {
     public String create() {
         return "course/template/create";
     }
-    
+
     /**
      * register dialog template page
      * 
@@ -60,7 +64,7 @@ public class CourseController extends CorePageController {
     public String dialog() {
         return "course/template/dialog";
     }
-    
+
     /**
      * register list template page
      * 
