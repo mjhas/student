@@ -3,7 +3,7 @@
     <parent>
         <groupId>eu.haslgruebler</groupId>
         <artifactId>core-parent</artifactId>
-        <version>0.2-SNAPSHOT</version>
+        <version>0.3-SNAPSHOT</version>
     </parent>
     <groupId>eu.haslgruebler.student</groupId>
     <artifactId>student-parent</artifactId>
