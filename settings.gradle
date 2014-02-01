@@ -1,0 +1,10 @@
+rootProject.name = 'student-parent'
+include ':student-api'
+include ':student-web'
+include ':student-dao-mongo'
+include ':student-webapp'
+
+project(':student-api').projectDir = "$rootDir/student-api" as File
+project(':student-web').projectDir = "$rootDir/student-web" as File
+project(':student-dao-mongo').projectDir = "$rootDir/student-dao-mongo" as File
+project(':student-webapp').projectDir = "$rootDir/student-webapp" as File

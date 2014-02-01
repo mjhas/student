@@ -1,0 +1,25 @@
+
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+
+eclipse {
+  wtp {
+    facet {
+      facet name: 'jst.web', version: '3.0'
+      facet name: 'java', version: '1.6'
+      facet name: 'wst.jsdt.web', version: '1.0'
+    }
+  }
+}
+
+description = 'Student Webapp'
+dependencies {
+  compile project(':student-web')
+  compile project(':student-dao-mongo')
+    compile group: 'ch.qos.logback', name: 'logback-core', version:'1.0.13'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version:'1.0.13'
+    compile group: 'eu.haslgruebler.core', name: 'bootstrap', version:'0.3-SNAPSHOT'
+    compile group: 'org.springframework', name: 'spring-web', version:'3.2.6.RELEASE'
+    compile group: 'eu.haslgruebler.core', name: 'ui-api', version:'0.3-SNAPSHOT'
+    compile group: 'eu.haslgruebler.core', name: 'ui-impl', version:'0.3-SNAPSHOT'
+}
