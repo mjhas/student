@@ -1,4 +1,4 @@
-(function(angular, $j, undefined) {
+(function(angular, jQuery, undefined) {
 	var courseApp = angular.module('courseApp', [ 'ngGrid',
 			'ui.bootstrap.modal' ]);
 

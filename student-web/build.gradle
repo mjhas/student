@@ -5,5 +5,5 @@ dependencies {
     compile group: 'org.springframework', name: 'spring-webmvc', version:'3.2.6.RELEASE'
     compile group: 'org.springframework', name: 'spring-web', version:'3.2.6.RELEASE'
   compile project(':student-api')
-    compile group: 'eu.haslgruebler.core', name: 'ui-api', version:'0.3-SNAPSHOT'
+    compile group: 'eu.haslgruebler.core', name: 'ui-api', version:'0.4-SNAPSHOT'
 }

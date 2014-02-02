@@ -34,7 +34,7 @@ public class StudentController extends CorePageController {
     private StudentController() {
         super("/student/student.jsp");
         addCssAsset(new CSSAsset("student", "/student/student.css"));
-        JavascriptAsset jsAsset = new JavascriptAsset("student", "/student/student.js", "angular-route");
+        JavascriptAsset jsAsset = new JavascriptAsset("student", "/student/student.js").addDependency("angular-route").addDependency("angular").addDependency("ng-grid").addDependency("jquery").addDependency("bootstrap-modal");
         jsAsset.setAngularModuleName("studentApp");
         addJavascriptAsset(jsAsset);
         setPageTitle("student.title.singlePageApp");
